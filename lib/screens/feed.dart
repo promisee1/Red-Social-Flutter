@@ -12,57 +12,23 @@ class FeedPage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Publicaciones'),
-        leading: IconButton(
-          icon: Icon(Icons.logout),
-          tooltip: 'Cerrar sesión',
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: const Text('Confirmar cierre de sesión'),
-                  content: const Text(
-                    '¿Estás seguro de que deseas cerrar sesión?',
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('Cancelar'),
-                    ),
-                    TextButton(
-                      onPressed: () async {
-                        Navigator.of(context).pop();
-                        await FirebaseAuth.instance.signOut();
-                        Navigator.pushReplacementNamed(context, '/LoginPage');
-                      },
-                      child: const Text(
-                        'Confirmar',
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    ),
-                  ],
-                );
-              },
-            );
-          },
+        leading: Container(
+          margin: EdgeInsets.only(left: 12),
+          decoration: BoxDecoration(
+            color: Colors.purple,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            icon: Icon(Icons.person, color: Colors.white),
+            tooltip: 'Profile',
+            onPressed: () {
+              Navigator.pushNamed(context, '/profile');
+            },
+          ),
         ),
         actions: [
           Container(
-            decoration: BoxDecoration(
-              color: Colors.purple,
-              shape: BoxShape.circle,
-            ),
-            child: IconButton(
-              icon: Icon(Icons.person, color: Colors.white),
-              tooltip: 'Profile',
-              onPressed: () {
-                Navigator.pushNamed(context, '/profile');
-              },
-            ),
-          ),
-          SizedBox(width: 8),
-          Container(
-            margin: EdgeInsets.only(right: 20),
+            margin: EdgeInsets.only(right: 12),
             decoration: BoxDecoration(
               color: Colors.purple,
               shape: BoxShape.circle,
